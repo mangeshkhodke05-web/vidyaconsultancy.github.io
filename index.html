@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vidya Consultancy - Digital Marketing Solutions</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .hero-bg {
+            background-color: #f0f4f8; /* A soft, modern blue-gray */
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header & Navigation -->
+    <header class="bg-white shadow-md p-4 sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-indigo-600">Vidya Consultancy</a>
+            <nav class="hidden md:flex space-x-6">
+                <a href="#services" class="text-gray-600 hover:text-indigo-600 transition-colors duration-300">Services</a>
+                <a href="#about" class="text-gray-600 hover:text-indigo-600 transition-colors duration-300">About Us</a>
+                <a href="#contact" class="text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-full font-medium transition-colors duration-300">Get a Quote</a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden text-gray-600 focus:outline-none">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg p-4 fixed w-full z-40 top-16">
+        <nav class="flex flex-col space-y-4 text-center">
+            <a href="#services" class="text-gray-600 hover:text-indigo-600 transition-colors duration-300">Services</a>
+            <a href="#about" class="text-gray-600 hover:text-indigo-600 transition-colors duration-300">About Us</a>
+            <a href="#contact" class="text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-full font-medium transition-colors duration-300">Get a Quote</a>
+        </nav>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-bg py-20 md:py-32 text-center">
+        <div class="container mx-auto px-4">
+            <h1 class="text-4xl md:text-6xl font-extrabold text-gray-900 mb-4 leading-tight">
+                Unlock Your Brand's Full Potential
+            </h1>
+            <p class="text-lg md:text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+                Vidya Consultancy offers comprehensive digital marketing solutions to help your business thrive in the online world.
+            </p>
+            <a href="#contact" class="bg-indigo-600 text-white px-8 py-3 rounded-full font-semibold text-lg hover:bg-indigo-700 transition-colors duration-300 shadow-lg">
+                Get Started Today
+            </a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">Our Digital Marketing Services</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service Card 1: SEO -->
+                <div class="bg-gray-100 p-8 rounded-xl shadow-md transform hover:scale-105 transition-transform duration-300">
+                    <div class="flex items-center justify-center h-16 w-16 bg-indigo-100 text-indigo-600 rounded-full mx-auto mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 text-center mb-2">Search Engine Optimization (SEO)</h3>
+                    <p class="text-gray-600 text-center">
+                        Boost your website's visibility on search engines like Google and attract organic, high-quality traffic.
+                    </p>
+                </div>
+                <!-- Service Card 2: Social Media Marketing -->
+                <div class="bg-gray-100 p-8 rounded-xl shadow-md transform hover:scale-105 transition-transform duration-300">
+                    <div class="flex items-center justify-center h-16 w-16 bg-indigo-100 text-indigo-600 rounded-full mx-auto mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 text-center mb-2">Social Media Marketing</h3>
+                    <p class="text-gray-600 text-center">
+                        Build your brand presence, engage with your audience, and drive conversions across all major social platforms.
+                    </p>
+                </div>
+                <!-- Service Card 3: Content Marketing -->
+                <div class="bg-gray-100 p-8 rounded-xl shadow-md transform hover:scale-105 transition-transform duration-300">
+                    <div class="flex items-center justify-center h-16 w-16 bg-indigo-100 text-indigo-600 rounded-full mx-auto mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.484 9.332 5 7.828 5 6.324 5 4.825 5.484 3.657 6.253L12 18V6.253zM12 6.253c1.168-.769 2.668-1.253 4.172-1.253 1.504 0 3.004.484 4.172 1.253L12 18V6.253z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 text-center mb-2">Content Marketing</h3>
+                    <p class="text-gray-600 text-center">
+                        Create valuable, relevant content that attracts, engages, and converts your target audience.
+                    </p>
+                </div>
+                <!-- Service Card 4: Pay-Per-Click (PPC) -->
+                <div class="bg-gray-100 p-8 rounded-xl shadow-md transform hover:scale-105 transition-transform duration-300">
+                    <div class="flex items-center justify-center h-16 w-16 bg-indigo-100 text-indigo-600 rounded-full mx-auto mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c1.657 0 3 .895 3 2s-1.343 2-3 2-3-.895-3-2 1.343-2 3-2z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14c-1.657 0-3-.895-3-2s1.343-2 3-2 3 .895 3 2-1.343 2-3 2z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 21c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 text-center mb-2">Pay-Per-Click (PPC)</h3>
+                    <p class="text-gray-600 text-center">
+                        Run highly targeted ad campaigns on Google, social media, and other platforms to generate immediate results.
+                    </p>
+                </div>
+                <!-- Service Card 5: Email Marketing -->
+                <div class="bg-gray-100 p-8 rounded-xl shadow-md transform hover:scale-105 transition-transform duration-300">
+                    <div class="flex items-center justify-center h-16 w-16 bg-indigo-100 text-indigo-600 rounded-full mx-auto mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 text-center mb-2">Email Marketing</h3>
+                    <p class="text-gray-600 text-center">
+                        Nurture leads and build lasting customer relationships with targeted and engaging email campaigns.
+                    </p>
+                </div>
+                <!-- Service Card 6: Analytics & Reporting -->
+                <div class="bg-gray-100 p-8 rounded-xl shadow-md transform hover:scale-105 transition-transform duration-300">
+                    <div class="flex items-center justify-center h-16 w-16 bg-indigo-100 text-indigo-600 rounded-full mx-auto mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 4h6m-3-12v12m-3-4a2 2 0 012-2h2a2 2 0 012 2z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 text-center mb-2">Analytics & Reporting</h3>
+                    <p class="text-gray-600 text-center">
+                        Gain clear insights into your marketing performance with detailed reports and data-driven analysis.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="py-16 md:py-24 bg-gray-100">
+        <div class="container mx-auto px-4 text-center max-w-4xl">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">About Vidya Consultancy</h2>
+            <p class="text-lg text-gray-600 mb-8">
+                Vidya Consultancy is a dedicated digital marketing company passionate about helping businesses of all sizes succeed online. We believe in a collaborative approach, working closely with our clients to understand their unique goals and craft strategies that deliver real, measurable results. Our expertise spans across all key digital channels, ensuring a cohesive and powerful online presence for your brand.
+            </p>
+            <div class="bg-white p-8 rounded-xl shadow-md inline-block">
+                <h3 class="text-xl font-bold text-gray-900 mb-2">Contact Us</h3>
+                <p class="text-lg text-gray-600">
+                    Phone: <a href="tel:9730426292" class="text-indigo-600 font-medium hover:underline">9730426292</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section id="contact" class="py-16 md:py-24 bg-indigo-600 text-center text-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Ready to Grow Your Business?</h2>
+            <p class="text-lg md:text-xl max-w-3xl mx-auto mb-8">
+                Let's discuss how a tailored digital marketing strategy can help you achieve your business objectives.
+            </p>
+            <a href="tel:9730426292" class="bg-white text-indigo-600 px-8 py-3 rounded-full font-semibold text-lg hover:bg-gray-100 transition-colors duration-300 shadow-lg">
+                Call Now to Start
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-300 py-6">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2025 Vidya Consultancy. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Mobile menu functionality
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Hide mobile menu on link click
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
