@@ -3,34 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vidya Consultancy - Digital Marketing Solutions</title>
-    <!-- Tailwind CSS -->
+    <title data-i18n="page-title">Vidya Consultancy - Digital Marketing Solutions</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Inter Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
         body {
             font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
         }
-        .hero-bg {
-            background-color: #f0f4f8; /* A soft, modern blue-gray */
+        /* Custom scrollbar for a professional look */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
+        .dark-theme ::-webkit-scrollbar-thumb {
+            background: #4f46e5; /* Indigo */
+            border-radius: 4px;
+        }
+        .dark-theme ::-webkit-scrollbar-track {
+            background: #111827; /* Gray 900 */
+        }
+        .light-theme ::-webkit-scrollbar-thumb {
+            background: #6366f1; /* Indigo */
+            border-radius: 4px;
+        }
+        .light-theme ::-webkit-scrollbar-track {
+            background: #f3f4f6; /* Gray 100 */
+        }
+        
+        /* General FAQ Accordion styles */
+        .faq-accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+        .faq-accordion-header i {
+            transition: transform 0.3s;
+        }
+        .faq-accordion-header.active i {
+            transform: rotate(180deg);
+        }
+        
+        /* Custom dynamic classes for theming */
+        /* These colors will be dynamically replaced by the JS theme switcher */
+        .text-text-color { color: var(--text-color); }
+        .text-sub-text { color: var(--sub-text); }
+        .text-main-heading { color: var(--main-heading); }
+        .bg-section-1 { background-color: var(--section-1); }
+        .bg-section-2 { background-color: var(--section-2); }
+        .bg-card-bg { background-color: var(--card-bg); }
+        .border-card-border { border-color: var(--card-border); }
+        .text-card-heading { color: var(--card-heading); }
+        .text-card-text { color: var(--card-text); }
+        .text-nav-color { color: var(--nav-color); }
+        .text-icon-color { color: var(--icon-color); }
+        .bg-input-bg { background-color: var(--input-bg); }
+        .border-input-border { border-color: var(--input-border); }
+        .text-input-text { color: var(--input-text); }
+        .text-form-label { color: var(--form-label); }
+        .border-footer-border { border-color: var(--footer-border); }
+        .text-footer-address { color: var(--footer-address); }
+        .hover\:bg-hover-bg:hover { background-color: var(--hover-bg); }
+        .bg-button-bg { background-color: var(--button-bg); }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
 
-    <!-- Header & Navigation -->
-    <header class="bg-white shadow-md p-4 sticky top-0 z-50">
-        <div class="container mx-auto flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-indigo-600">Vidya Consultancy</a>
-            <nav class="hidden md:flex space-x-6">
-                <a href="#services" class="text-gray-600 hover:text-indigo-600 transition-colors duration-300">Services</a>
-                <a href="#about" class="text-gray-600 hover:text-indigo-600 transition-colors duration-300">About Us</a>
-                <a href="#contact" class="text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-full font-medium transition-colors duration-300">Get a Quote</a>
+<body class="dark-theme bg-gray-900 text-gray-100">
+
+    <header class="sticky top-0 z-50 transition-colors duration-300">
+        <div class="header-content container mx-auto flex justify-between items-center p-4 shadow-xl border-b border-indigo-600/50">
+            
+            <a href="#" class="flex items-center">
+                <span class="text-3xl font-bold text-indigo-500">Vidya</span><span class="text-3xl font-bold text-text-color">Consultancy</span>
+            </a>
+            
+            <nav class="hidden md:flex space-x-6 items-center">
+                
+                <a href="https://www.facebook.com/VidyaConsultancy" target="_blank" aria-label="Facebook" class="text-icon-color hover:text-indigo-400 transition-colors duration-300">
+                    <i class="fab fa-facebook-f text-xl"></i>
+                </a>
+                <a href="https://www.instagram.com/VidyaConsultancy" target="_blank" aria-label="Instagram" class="text-icon-color hover:text-indigo-400 transition-colors duration-300">
+                    <i class="fab fa-instagram text-xl"></i>
+                </a>
+
+                <button id="theme-toggle" class="text-icon-color hover:text-indigo-400 p-2 rounded-full transition-colors duration-300" aria-label="Toggle Theme">
+                    <i class="fas fa-sun text-xl"></i>
+                </button>
+
+                <div class="relative inline-block text-left mr-4">
+                    <select id="language-switcher" class="bg-input-bg border border-input-border text-text-color py-2 px-3 rounded-md shadow-sm text-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 transition duration-150 ease-in-out">
+                        <option value="en">English (EN)</option>
+                        <option value="fr">Français (FR)</option>
+                        <option value="es">Español (ES)</option>
+                        <option value="hi">हिन्दी (HI)</option>
+                        <option value="mr">मराठी (MR)</option>
+                        <option value="bn">বাংলা (BN)</option>
+                        <option value="ur">اردو (UR)</option>
+                    </select>
+                </div>
+                
+                <a href="#services" class="text-nav-color hover:text-indigo-400 transition-colors duration-300 font-medium" data-i18n="nav-services">Services</a>
+                <a href="#testimonials" class="text-nav-color hover:text-indigo-400 transition-colors duration-300 font-medium" data-i18n="nav-testimonials">Testimonials</a>
+                <a href="#faq" class="text-nav-color hover:text-indigo-400 transition-colors duration-300 font-medium" data-i18n="nav-faq">FAQ</a>
+                <a href="#about" class="text-nav-color hover:text-indigo-400 transition-colors duration-300 font-medium" data-i18n="nav-about">About Us</a>
+                <a href="#contact" class="text-white bg-indigo-600 hover:bg-indigo-500 px-5 py-2 rounded-full font-semibold transition-colors duration-300 shadow-lg transform hover:scale-105" data-i18n="nav-quote">Get a Quote</a>
             </nav>
-            <button id="mobile-menu-button" class="md:hidden text-gray-600 focus:outline-none">
+            <button id="mobile-menu-button" class="md:hidden text-text-color focus:outline-none p-2" aria-label="Toggle Mobile Menu">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
                 </svg>
@@ -38,174 +119,750 @@
         </div>
     </header>
 
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg p-4 fixed w-full z-40 top-16">
-        <nav class="flex flex-col space-y-4 text-center">
-            <a href="#services" class="text-gray-600 hover:text-indigo-600 transition-colors duration-300">Services</a>
-            <a href="#about" class="text-gray-600 hover:text-indigo-600 transition-colors duration-300">About Us</a>
-            <a href="#contact" class="text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-full font-medium transition-colors duration-300">Get a Quote</a>
+    <div id="mobile-menu" class="hidden md:hidden shadow-xl p-4 fixed w-full z-40 top-16 border-t border-indigo-600/50 transition-colors duration-300">
+        <nav class="flex flex-col space-y-4 text-center mobile-menu-content">
         </nav>
     </div>
 
-    <!-- Hero Section -->
-    <section class="hero-bg py-20 md:py-32 text-center">
-        <div class="container mx-auto px-4">
-            <h1 class="text-4xl md:text-6xl font-extrabold text-gray-900 mb-4 leading-tight">
-                Unlock Your Brand's Full Potential
-            </h1>
-            <p class="text-lg md:text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-                Vidya Consultancy offers comprehensive digital marketing solutions to help your business thrive in the online world.
-            </p>
-            <a href="#contact" class="bg-indigo-600 text-white px-8 py-3 rounded-full font-semibold text-lg hover:bg-indigo-700 transition-colors duration-300 shadow-lg">
-                Get Started Today
-            </a>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="py-16 md:py-24 bg-white">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">Our Digital Marketing Services</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Service Card 1: SEO -->
-                <div class="bg-gray-100 p-8 rounded-xl shadow-md transform hover:scale-105 transition-transform duration-300">
-                    <div class="flex items-center justify-center h-16 w-16 bg-indigo-100 text-indigo-600 rounded-full mx-auto mb-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 text-center mb-2">Search Engine Optimization (SEO)</h3>
-                    <p class="text-gray-600 text-center">
-                        Boost your website's visibility on search engines like Google and attract organic, high-quality traffic.
-                    </p>
-                </div>
-                <!-- Service Card 2: Social Media Marketing -->
-                <div class="bg-gray-100 p-8 rounded-xl shadow-md transform hover:scale-105 transition-transform duration-300">
-                    <div class="flex items-center justify-center h-16 w-16 bg-indigo-100 text-indigo-600 rounded-full mx-auto mb-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 text-center mb-2">Social Media Marketing</h3>
-                    <p class="text-gray-600 text-center">
-                        Build your brand presence, engage with your audience, and drive conversions across all major social platforms.
-                    </p>
-                </div>
-                <!-- Service Card 3: Content Marketing -->
-                <div class="bg-gray-100 p-8 rounded-xl shadow-md transform hover:scale-105 transition-transform duration-300">
-                    <div class="flex items-center justify-center h-16 w-16 bg-indigo-100 text-indigo-600 rounded-full mx-auto mb-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.484 9.332 5 7.828 5 6.324 5 4.825 5.484 3.657 6.253L12 18V6.253zM12 6.253c1.168-.769 2.668-1.253 4.172-1.253 1.504 0 3.004.484 4.172 1.253L12 18V6.253z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 text-center mb-2">Content Marketing</h3>
-                    <p class="text-gray-600 text-center">
-                        Create valuable, relevant content that attracts, engages, and converts your target audience.
-                    </p>
-                </div>
-                <!-- Service Card 4: Pay-Per-Click (PPC) -->
-                <div class="bg-gray-100 p-8 rounded-xl shadow-md transform hover:scale-105 transition-transform duration-300">
-                    <div class="flex items-center justify-center h-16 w-16 bg-indigo-100 text-indigo-600 rounded-full mx-auto mb-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c1.657 0 3 .895 3 2s-1.343 2-3 2-3-.895-3-2 1.343-2 3-2z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14c-1.657 0-3-.895-3-2s1.343-2 3-2 3 .895 3 2-1.343 2-3 2z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 21c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 text-center mb-2">Pay-Per-Click (PPC)</h3>
-                    <p class="text-gray-600 text-center">
-                        Run highly targeted ad campaigns on Google, social media, and other platforms to generate immediate results.
-                    </p>
-                </div>
-                <!-- Service Card 5: Email Marketing -->
-                <div class="bg-gray-100 p-8 rounded-xl shadow-md transform hover:scale-105 transition-transform duration-300">
-                    <div class="flex items-center justify-center h-16 w-16 bg-indigo-100 text-indigo-600 rounded-full mx-auto mb-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 text-center mb-2">Email Marketing</h3>
-                    <p class="text-gray-600 text-center">
-                        Nurture leads and build lasting customer relationships with targeted and engaging email campaigns.
-                    </p>
-                </div>
-                <!-- Service Card 6: Analytics & Reporting -->
-                <div class="bg-gray-100 p-8 rounded-xl shadow-md transform hover:scale-105 transition-transform duration-300">
-                    <div class="flex items-center justify-center h-16 w-16 bg-indigo-100 text-indigo-600 rounded-full mx-auto mb-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 4h6m-3-12v12m-3-4a2 2 0 012-2h2a2 2 0 012 2z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 text-center mb-2">Analytics & Reporting</h3>
-                    <p class="text-gray-600 text-center">
-                        Gain clear insights into your marketing performance with detailed reports and data-driven analysis.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Us Section -->
-    <section id="about" class="py-16 md:py-24 bg-gray-100">
-        <div class="container mx-auto px-4 text-center max-w-4xl">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">About Vidya Consultancy</h2>
-            <p class="text-lg text-gray-600 mb-8">
-                Vidya Consultancy is a dedicated digital marketing company passionate about helping businesses of all sizes succeed online. We believe in a collaborative approach, working closely with our clients to understand their unique goals and craft strategies that deliver real, measurable results. Our expertise spans across all key digital channels, ensuring a cohesive and powerful online presence for your brand.
-            </p>
-            <div class="bg-white p-8 rounded-xl shadow-md inline-block">
-                <h3 class="text-xl font-bold text-gray-900 mb-2">Contact Us</h3>
-                <p class="text-lg text-gray-600">
-                    Phone: <a href="tel:9730426292" class="text-indigo-600 font-medium hover:underline">9730426292</a>
+    <section class="bg-section-1 py-12 md:py-24 transition-colors duration-300">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between">
+            <div class="md:w-1/2 md:text-left mb-10 md:mb-0">
+                <p class="text-lg font-semibold text-indigo-400 mb-2 uppercase tracking-wider" data-i18n="hero-tag">Strategic Digital Growth</p>
+                <h1 class="text-4xl lg:text-6xl font-extrabold text-main-heading mb-4 leading-tight" data-i18n="hero-title">
+                    Unlock Your Brand's Full Potential
+                </h1>
+                <p class="text-lg md:text-xl text-sub-text mb-6 max-w-xl" data-i18n="hero-tagline">
+                    Vidya Consultancy offers comprehensive digital marketing solutions to help your business thrive in the online world.
                 </p>
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="#contact" class="inline-block text-white bg-indigo-600 hover:bg-indigo-500 px-8 py-3 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105" data-i18n="hero-cta-start">
+                        Start Your Project Today
+                    </a>
+                    <a href="#services" class="inline-block text-indigo-400 bg-button-bg hover:bg-gray-600 border border-indigo-400 px-8 py-3 rounded-full font-semibold transition-colors duration-300 transform hover:scale-105" data-i18n="hero-cta-learn">
+                        Learn More
+                    </a>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <img 
+                    src="https://images.unsplash.com/photo-1542744173-05336fcc7ad4?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                    alt="Digital strategy dashboard with graphs and data" 
+                    class="w-full max-w-md h-auto rounded-xl shadow-2xl border border-indigo-700/50 transition-colors duration-300"
+                    loading="lazy"
+                >
             </div>
         </div>
     </section>
 
-    <!-- Call to Action Section -->
-    <section id="contact" class="py-16 md:py-24 bg-indigo-600 text-center text-white">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4">Ready to Grow Your Business?</h2>
-            <p class="text-lg md:text-xl max-w-3xl mx-auto mb-8">
-                Let's discuss how a tailored digital marketing strategy can help you achieve your business objectives.
+    <section id="services" class="bg-section-2 py-16 md:py-20 transition-colors duration-300">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-main-heading mb-4" data-i18n="services-title">Our Core Services</h2>
+            <p class="text-lg text-sub-text mb-12 max-w-3xl mx-auto" data-i18n="services-tagline">
+                We provide end-to-end digital solutions tailored to meet your business objectives and deliver measurable growth.
             </p>
-            <a href="tel:9730426292" class="bg-white text-indigo-600 px-8 py-3 rounded-full font-semibold text-lg hover:bg-gray-100 transition-colors duration-300 shadow-lg">
-                Call Now to Start
-            </a>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <div class="bg-card-bg p-6 rounded-xl shadow-xl transition-all duration-300 hover:shadow-indigo-500/30 hover:scale-[1.02] border-t-4 border-indigo-600">
+                    <i class="fas fa-search-dollar text-4xl text-indigo-400 mb-4"></i>
+                    <h3 class="text-xl font-bold text-card-heading mb-3" data-i18n="service-1-title">Search Engine Optimization (SEO)</h3>
+                    <p class="text-card-text" data-i18n="service-1-desc">
+                        Increase your organic visibility and drive high-quality traffic with proven SEO strategies. We focus on long-term ranking improvements.
+                    </p>
+                </div>
+
+                <div class="bg-card-bg p-6 rounded-xl shadow-xl transition-all duration-300 hover:shadow-indigo-500/30 hover:scale-[1.02] border-t-4 border-indigo-600">
+                    <i class="fas fa-chart-line text-4xl text-indigo-400 mb-4"></i>
+                    <h3 class="text-xl font-bold text-card-heading mb-3" data-i18n="service-2-title">Pay-Per-Click (PPC) Advertising</h3>
+                    <p class="text-card-text" data-i18n="service-2-desc">
+                        Maximize your ROI with targeted PPC campaigns on Google, Facebook, and more. Get immediate results and control your spending.
+                    </p>
+                </div>
+
+                <div class="bg-card-bg p-6 rounded-xl shadow-xl transition-all duration-300 hover:shadow-indigo-500/30 hover:scale-[1.02] border-t-4 border-indigo-600">
+                    <i class="fas fa-comments text-4xl text-indigo-400 mb-4"></i>
+                    <h3 class="text-xl font-bold text-card-heading mb-3" data-i18n="service-3-title">Social Media Marketing</h3>
+                    <p class="text-card-text" data-i18n="service-3-desc">
+                        Build brand awareness, engage your audience, and drive conversions across all major social platforms with creative content and targeted ads.
+                    </p>
+                </div>
+
+                <div class="bg-card-bg p-6 rounded-xl shadow-xl transition-all duration-300 hover:shadow-indigo-500/30 hover:scale-[1.02] border-t-4 border-indigo-600">
+                    <i class="fas fa-pen-nib text-4xl text-indigo-400 mb-4"></i>
+                    <h3 class="text-xl font-bold text-card-heading mb-3" data-i18n="service-4-title">Content Marketing Strategy</h3>
+                    <p class="text-card-text" data-i18n="service-4-desc">
+                        Create compelling, valuable content that attracts and converts your ideal customers. Strategy, creation, and distribution included.
+                    </p>
+                </div>
+
+            </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-gray-300 py-6">
+    <section id="testimonials" class="bg-section-1 py-16 md:py-20 transition-colors duration-300">
         <div class="container mx-auto px-4 text-center">
-            <p>&copy; 2025 Vidya Consultancy. All rights reserved.</p>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-main-heading mb-10" data-i18n="testimonials-title">What Our Clients Say</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <div class="bg-card-bg p-6 rounded-xl shadow-2xl border border-card-border transition-colors duration-300">
+                    <i class="fas fa-quote-left text-2xl text-indigo-600 mb-4"></i>
+                    <p class="italic text-sub-text mb-4" data-i18n="testimonial-1-text">
+                        "Vidya Consultancy transformed our online presence. Our lead volume increased by 50% within three months. Their SEO expertise is unmatched!"
+                    </p>
+                    <p class="font-semibold text-card-heading" data-i18n="testimonial-1-author">- A. Sharma, Tech Start-up CEO</p>
+                </div>
+
+                <div class="bg-card-bg p-6 rounded-xl shadow-2xl border border-card-border transition-colors duration-300">
+                    <i class="fas fa-quote-left text-2xl text-indigo-600 mb-4"></i>
+                    <p class="italic text-sub-text mb-4" data-i18n="testimonial-2-text">
+                        "The PPC team delivered immediate, highly targeted results. We saw a fantastic return on investment, making them an invaluable partner."
+                    </p>
+                    <p class="font-semibold text-card-heading" data-i18n="testimonial-2-author">- R. Khan, E-commerce Store Owner</p>
+                </div>
+
+                <div class="bg-card-bg p-6 rounded-xl shadow-2xl border border-card-border transition-colors duration-300">
+                    <i class="fas fa-quote-left text-2xl text-indigo-600 mb-4"></i>
+                    <p class="italic text-sub-text mb-4" data-i18n="testimonial-3-text">
+                        "Their social media campaigns are creative and truly capture our brand voice. We now have a highly engaged and growing community."
+                    </p>
+                    <p class="font-semibold text-card-heading" data-i18n="testimonial-3-author">- P. Deshpande, Retail Brand Manager</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="bg-section-2 py-16 md:py-20 transition-colors duration-300">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-main-heading text-center mb-10" data-i18n="faq-title">Frequently Asked Questions</h2>
+            
+            <div class="max-w-4xl mx-auto">
+                
+                <div class="faq-accordion-item rounded-lg mb-4 overflow-hidden shadow-xl border border-card-border transition-colors duration-300">
+                    <button class="faq-accordion-header w-full text-left p-5 font-semibold text-lg flex justify-between items-center transition duration-300 bg-card-bg hover:bg-hover-bg text-card-heading" data-accordion="q1">
+                        <span data-i18n="faq-q1">What makes Vidya Consultancy different?</span>
+                        <i class="fas fa-chevron-down text-indigo-400 transform transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-accordion-content">
+                        <p class="p-5 pt-0 text-sub-text bg-section-1" data-i18n="faq-a1">
+                            We are built on the principle of **'Vidya' (Knowledge)**, focusing on ethical, data-driven strategies and complete transparency. We treat every client's business as our own, aiming for sustainable, long-term growth over quick, temporary fixes.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-accordion-item rounded-lg mb-4 overflow-hidden shadow-xl border border-card-border transition-colors duration-300">
+                    <button class="faq-accordion-header w-full text-left p-5 font-semibold text-lg flex justify-between items-center transition duration-300 bg-card-bg hover:bg-hover-bg text-card-heading" data-accordion="q2">
+                        <span data-i18n="faq-q2">How soon can I expect results from SEO?</span>
+                        <i class="fas fa-chevron-down text-indigo-400 transform transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-accordion-content">
+                        <p class="p-5 pt-0 text-sub-text bg-section-1" data-i18n="faq-a2">
+                            SEO is a long-term investment. You can expect to see initial improvements in rankings and traffic within **3 to 6 months**. For major competitive keyword wins, it often takes 6 to 12 months of consistent effort.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-accordion-item rounded-lg overflow-hidden shadow-xl border border-card-border transition-colors duration-300">
+                    <button class="faq-accordion-header w-full text-left p-5 font-semibold text-lg flex justify-between items-center transition duration-300 bg-card-bg hover:bg-hover-bg text-card-heading" data-accordion="q3">
+                        <span data-i18n="faq-q3">Do you provide regional language support for marketing?</span>
+                        <i class="fas fa-chevron-down text-indigo-400 transform transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-accordion-content">
+                        <p class="p-5 pt-0 text-sub-text bg-section-1" data-i18n="faq-a3">
+                            Yes, absolutely! We specialize in hyper-local digital campaigns, including content creation and ad targeting in major Indian languages like **Hindi, Marathi, and Bengali**, as well as international languages like Spanish and French.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="bg-section-1 py-16 md:py-20 transition-colors duration-300">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-8 md:mb-0 md:pr-12">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-main-heading mb-4" data-i18n="about-title">About Vidya Consultancy</h2>
+                <p class="text-lg text-sub-text mb-6" data-i18n="about-p1">
+                    Founded on the principle of **'Vidya' (Knowledge)**, we are a team of passionate digital strategists, data scientists, and creative marketers dedicated to delivering unparalleled results for our clients across the globe and in India.
+                </p>
+                <p class="text-sub-text" data-i18n="about-p2">
+                    Our mission is to empower businesses, small and large, to navigate the complex digital landscape with confidence and achieve sustainable, measurable growth. We don't just execute; we partner with you every step of the way to ensure your success is built on solid data and strategy.
+                </p>
+                <a href="mailto:contact@vidyaconsultancy.com" class="mt-6 inline-block text-white bg-indigo-600 hover:bg-indigo-500 px-6 py-2 rounded-full font-semibold transition-colors duration-300 shadow-lg" data-i18n="about-cta">
+                    Email Our Experts
+                </a>
+            </div>
+            <div class="md:w-1/2">
+                <img 
+                    src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                    alt="A diverse business team working collaboratively on a project" 
+                    class="w-full h-auto rounded-xl shadow-2xl border border-indigo-700/50 transition-colors duration-300"
+                    loading="lazy"
+                >
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="bg-section-2 py-16 md:py-20 transition-colors duration-300">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-main-heading text-center mb-10" data-i18n="contact-title">Ready to Grow Your Business?</h2>
+            
+            <div class="max-w-xl mx-auto bg-card-bg p-8 rounded-xl shadow-2xl border border-indigo-700/50 transition-colors duration-300">
+                <p class="text-sub-text mb-6 text-center" data-i18n="contact-tagline">
+                    Fill out the form below or reach us directly.
+                </p>
+                
+                <form action="#" method="POST" class="space-y-4">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-form-label" data-i18n="contact-label-name">Name</label>
+                        <input type="text" name="name" id="name" required class="mt-1 block w-full bg-input-bg border-input-border rounded-md shadow-sm p-3 text-input-text focus:border-indigo-500 focus:ring-indigo-500 border">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-form-label" data-i18n="contact-label-email">Email</label>
+                        <input type="email" name="email" id="email" required class="mt-1 block w-full bg-input-bg border-input-border rounded-md shadow-sm p-3 text-input-text focus:border-indigo-500 focus:ring-indigo-500 border">
+                    </div>
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-form-label" data-i18n="contact-label-message">How can we help you?</label>
+                        <textarea id="message" name="message" rows="4" required class="mt-1 block w-full bg-input-bg border-input-border rounded-md shadow-sm p-3 text-input-text focus:border-indigo-500 focus:ring-indigo-500 border"></textarea>
+                    </div>
+                    <div>
+                        <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-full shadow-lg text-lg font-semibold text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-300" data-i18n="contact-button">
+                            Send Message
+                        </button>
+                    </div>
+                </form>
+
+                <div class="mt-8 pt-6 border-t border-card-border text-center">
+                    <p class="text-lg font-semibold text-card-heading mb-2" data-i18n="contact-or-call">Or reach out directly:</p>
+                    <div class="flex flex-col space-y-2 text-sub-text">
+                        <a href="tel:+919876543210" class="hover:text-indigo-400 transition-colors duration-300">
+                            <i class="fas fa-phone-alt text-indigo-400 mr-2"></i> 
+                            <span data-i18n="contact-phone">Mobile: +91 98765 43210</span>
+                        </a>
+                        <a href="mailto:contact@vidyaconsultancy.com" class="hover:text-indigo-400 transition-colors duration-300">
+                            <i class="fas fa-envelope text-indigo-400 mr-2"></i> 
+                            <span data-i18n="contact-email">Email: contact@vidyaconsultancy.com</span>
+                        </a>
+                        <a href="http://www.vidyaconsultancy.com" target="_blank" class="hover:text-indigo-400 transition-colors duration-300">
+                            <i class="fas fa-globe text-indigo-400 mr-2"></i> 
+                            <span data-i18n="contact-website">Website: www.vidyaconsultancy.com</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="border-t border-footer-border py-8 transition-colors duration-300">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+            
+            <div class="mb-4 md:mb-0">
+                <p class="text-sub-text" data-i18n="footer-copyright">&copy; 2024 Vidya Consultancy. All rights reserved.</p>
+                <p class="text-sm text-footer-address mt-1" data-i18n="footer-address">Pune, Maharashtra, India</p>
+            </div>
+            
+            <div class="flex space-x-6 mb-4 md:mb-0">
+                <a href="#services" class="text-nav-color hover:text-indigo-400 transition-colors duration-300" data-i18n="nav-services">Services</a>
+                <a href="#about" class="text-nav-color hover:text-indigo-400 transition-colors duration-300" data-i18n="nav-about">About Us</a>
+                <a href="#contact" class="text-nav-color hover:text-indigo-400 transition-colors duration-300" data-i18n="nav-contact">Contact</a>
+            </div>
+            
+            <div class="flex space-x-4">
+                <a href="https://www.facebook.com/VidyaConsultancy" target="_blank" aria-label="Facebook" class="text-icon-color hover:text-indigo-400 transition-colors duration-300">
+                    <i class="fab fa-facebook-f text-2xl"></i>
+                </a>
+                <a href="https://www.instagram.com/VidyaConsultancy" target="_blank" aria-label="Instagram" class="text-icon-color hover:text-indigo-400 transition-colors duration-300">
+                    <i class="fab fa-instagram text-2xl"></i>
+                </a>
+                <a href="https://www.linkedin.com/company/VidyaConsultancy" target="_blank" aria-label="LinkedIn" class="text-icon-color hover:text-indigo-400 transition-colors duration-300">
+                    <i class="fab fa-linkedin-in text-2xl"></i>
+                </a>
+            </div>
+
         </div>
     </footer>
 
     <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
+        // === 1. Theme Toggle Logic ===
+        const body = document.body;
+        const themeToggle = document.getElementById('theme-toggle');
+        const sunIcon = '<i class="fas fa-sun text-xl"></i>';
+        const moonIcon = '<i class="fas fa-moon text-xl"></i>';
 
-        // Mobile menu functionality
+        // Theme classes map
+        const themeMapData = {
+            'dark-theme': {
+                '--text-color': '#ffffff',
+                '--sub-text': '#9ca3af', /* gray-400 */
+                '--main-heading': '#ffffff',
+                '--section-1': '#111827', /* gray-900 */
+                '--section-2': '#1f2937', /* gray-800 */
+                '--card-bg': '#1f2937', /* gray-800 */
+                '--card-border': '#374151', /* gray-700 */
+                '--card-heading': '#ffffff',
+                '--card-text': '#9ca3af', /* gray-400 */
+                '--nav-color': '#d1d5db', /* gray-300 */
+                '--icon-color': '#9ca3af', /* gray-400 */
+                '--input-bg': '#374151', /* gray-700 */
+                '--input-border': '#4b5563', /* gray-600 */
+                '--input-text': '#ffffff',
+                '--form-label': '#d1d5db', /* gray-300 */
+                '--footer-border': '#374151', /* gray-700 */
+                '--footer-address': '#6b7280', /* gray-500 */
+                '--hover-bg': '#374151', /* gray-700 */
+                '--button-bg': '#374151' /* gray-700 */
+            },
+            'light-theme': {
+                '--text-color': '#1f2937', /* gray-900 */
+                '--sub-text': '#6b7280', /* gray-500 */
+                '--main-heading': '#111827', /* gray-900 */
+                '--section-1': '#f9fafb', /* gray-50 */
+                '--section-2': '#ffffff', /* white */
+                '--card-bg': '#ffffff', /* white */
+                '--card-border': '#e5e7eb', /* gray-200 */
+                '--card-heading': '#111827', /* gray-900 */
+                '--card-text': '#6b7280', /* gray-500 */
+                '--nav-color': '#4b5563', /* gray-600 */
+                '--icon-color': '#6b7280', /* gray-500 */
+                '--input-bg': '#f3f4f6', /* gray-100 */
+                '--input-border': '#d1d5db', /* gray-300 */
+                '--input-text': '#1f2937', /* gray-800 */
+                '--form-label': '#374151', /* gray-700 */
+                '--footer-border': '#e5e7eb', /* gray-200 */
+                '--footer-address': '#9ca3af', /* gray-400 */
+                '--hover-bg': '#f3f4f6', /* gray-100 */
+                '--button-bg': '#e5e7eb' /* gray-200 */
+            }
+        };
+
+        const updateTheme = (themeName) => {
+            const themeData = themeMapData[themeName];
+            if (!themeData) return;
+
+            // Update CSS variables on the body
+            for (const [key, value] of Object.entries(themeData)) {
+                body.style.setProperty(key, value);
+            }
+
+            // Remove previous theme classes and add new one
+            body.classList.remove('dark-theme', 'light-theme', 'bg-gray-900', 'text-gray-100', 'bg-gray-50', 'text-gray-800');
+            
+            if (themeName === 'dark-theme') {
+                body.classList.add('dark-theme', 'bg-gray-900', 'text-gray-100');
+            } else {
+                body.classList.add('light-theme', 'bg-gray-50', 'text-gray-800');
+            }
+            
+            // Update Theme Toggle Icon
+            themeToggle.innerHTML = themeName === 'dark-theme' ? sunIcon : moonIcon;
+            
+            // Update Mobile Menu content to reflect new theme styling
+            const mobileMenuContent = document.querySelector('.mobile-menu-content');
+            if (mobileMenuContent) {
+                 mobileMenuContent.innerHTML = ''; // Clear existing content
+                 const desktopNav = document.querySelector('nav.hidden.md\\:flex');
+
+                 // Clone and adapt desktop nav links for mobile menu
+                 desktopNav.querySelectorAll('a').forEach(link => {
+                     const clonedLink = link.cloneNode(true);
+                     clonedLink.className = 'block py-3 px-4 font-semibold rounded-lg transition-colors duration-300 ' + 
+                                            (link.getAttribute('href') === '#contact' 
+                                                ? 'text-white bg-indigo-600 hover:bg-indigo-500' 
+                                                : `text-nav-color hover:text-indigo-400`);
+                     mobileMenuContent.appendChild(clonedLink);
+                 });
+                 // Clone and adapt social media and language switcher for mobile
+                 desktopNav.querySelectorAll('.text-icon-color, .relative').forEach(element => {
+                    mobileMenuContent.appendChild(element.cloneNode(true));
+                });
+                
+                // Re-attach event listeners for the newly cloned language switcher
+                const mobileLangSwitcher = mobileMenuContent.querySelector('#language-switcher');
+                if (mobileLangSwitcher) {
+                    mobileLangSwitcher.value = document.getElementById('language-switcher').value; // Sync value
+                    mobileLangSwitcher.addEventListener('change', (event) => {
+                        translate(event.target.value);
+                    });
+                }
+            }
+            
+            localStorage.setItem('theme', themeName);
+        };
+
+        // Initialize theme
+        const preferredTheme = localStorage.getItem('theme') || 'dark-theme';
+        updateTheme(preferredTheme);
+        
+        // Theme toggle event listener
+        themeToggle.addEventListener('click', () => {
+            const newTheme = body.classList.contains('dark-theme') ? 'light-theme' : 'dark-theme';
+            updateTheme(newTheme);
+            translate(document.getElementById('language-switcher').value); // Re-apply translation after theme change to fix styles on cloned mobile elements
+        });
+        
+
+        // === 2. Multi-Language Translation Data (i18n) ===
+        const translations = {
+            'en': {
+                'page-title': 'Vidya Consultancy - Digital Marketing Solutions',
+                'nav-services': 'Services', 'nav-testimonials': 'Testimonials', 'nav-about': 'About Us', 'nav-quote': 'Get a Quote', 'nav-faq': 'FAQ', 'nav-contact': 'Contact',
+                'hero-tag': 'Strategic Digital Growth',
+                'hero-title': 'Unlock Your Brand\'s Full Potential',
+                'hero-tagline': 'Vidya Consultancy offers comprehensive digital marketing solutions to help your business thrive in the online world.',
+                'hero-cta-start': 'Start Your Project Today', 'hero-cta-learn': 'Learn More',
+
+                'services-title': 'Our Core Services', 'services-tagline': 'We provide end-to-end digital solutions tailored to meet your business objectives and deliver measurable growth.',
+                'service-1-title': 'Search Engine Optimization (SEO)', 'service-1-desc': 'Increase your organic visibility and drive high-quality traffic with proven SEO strategies. We focus on long-term ranking improvements.',
+                'service-2-title': 'Pay-Per-Click (PPC) Advertising', 'service-2-desc': 'Maximize your ROI with targeted PPC campaigns on Google, Facebook, and more. Get immediate results and control your spending.',
+                'service-3-title': 'Social Media Marketing', 'service-3-desc': 'Build brand awareness, engage your audience, and drive conversions across all major social platforms with creative content and targeted ads.',
+                'service-4-title': 'Content Marketing Strategy', 'service-4-desc': 'Create compelling, valuable content that attracts and converts your ideal customers. Strategy, creation, and distribution included.',
+
+                'testimonials-title': 'What Our Clients Say',
+                'testimonial-1-text': '"Vidya Consultancy transformed our online presence. Our lead volume increased by 50% within three months. Their SEO expertise is unmatched!"', 'testimonial-1-author': '- A. Sharma, Tech Start-up CEO',
+                'testimonial-2-text': '"The PPC team delivered immediate, highly targeted results. We saw a fantastic return on investment, making them an invaluable partner."', 'testimonial-2-author': '- R. Khan, E-commerce Store Owner',
+                'testimonial-3-text': '"Their social media campaigns are creative and truly capture our brand voice. We now have a highly engaged and growing community."', 'testimonial-3-author': '- P. Deshpande, Retail Brand Manager',
+
+                'faq-title': 'Frequently Asked Questions',
+                'faq-q1': 'What makes Vidya Consultancy different?',
+                'faq-a1': 'We are built on the principle of **\'Vidya\' (Knowledge)**, focusing on ethical, data-driven strategies and complete transparency. We treat every client\'s business as our own, aiming for sustainable, long-term growth over quick, temporary fixes.',
+                'faq-q2': 'How soon can I expect results from SEO?',
+                'faq-a2': 'SEO is a long-term investment. You can expect to see initial improvements in rankings and traffic within **3 to 6 months**. For major competitive keyword wins, it often takes 6 to 12 months of consistent effort.',
+                'faq-q3': 'Do you provide regional language support for marketing?',
+                'faq-a3': 'Yes, absolutely! We specialize in hyper-local digital campaigns, including content creation and ad targeting in major Indian languages like **Hindi, Marathi, and Bengali**, as well as international languages like Spanish and French.',
+
+                'about-title': 'About Vidya Consultancy',
+                'about-p1': 'Founded on the principle of **\'Vidya\' (Knowledge)**, we are a team of passionate digital strategists, data scientists, and creative marketers dedicated to delivering unparalleled results for our clients across the globe and in India.',
+                'about-p2': 'Our mission is to empower businesses, small and large, to navigate the complex digital landscape with confidence and achieve sustainable, measurable growth. We don\'t just execute; we partner with you every step of the way to ensure your success is built on solid data and strategy.',
+                'about-cta': 'Email Our Experts',
+
+                'contact-title': 'Ready to Grow Your Business?', 'contact-tagline': 'Fill out the form below or reach us directly.',
+                'contact-label-name': 'Name', 'contact-label-email': 'Email', 'contact-label-message': 'How can we help you?', 'contact-button': 'Send Message',
+                'contact-or-call': 'Or reach out directly:', 'contact-phone': 'Mobile: +91 98765 43210', 'contact-email': 'Email: contact@vidyaconsultancy.com', 'contact-website': 'Website: www.vidyaconsultancy.com',
+
+                'footer-copyright': '© 2024 Vidya Consultancy. All rights reserved.', 'footer-address': 'Pune, Maharashtra, India'
+            },
+            'fr': {
+                'page-title': 'Vidya Consultancy - Solutions de Marketing Numérique',
+                'nav-services': 'Services', 'nav-testimonials': 'Témoignages', 'nav-about': 'À Propos', 'nav-quote': 'Demander un Devis', 'nav-faq': 'FAQ', 'nav-contact': 'Contact',
+                'hero-tag': 'Croissance Numérique Stratégique',
+                'hero-title': 'Libérez tout le potentiel de votre marque',
+                'hero-tagline': 'Vidya Consultancy propose des solutions de marketing numérique complètes pour aider votre entreprise à prospérer dans le monde en ligne.',
+                'hero-cta-start': 'Commencez Votre Projet Aujourd\'hui', 'hero-cta-learn': 'En Savoir Plus',
+
+                'services-title': 'Nos Services Principaux', 'services-tagline': 'Nous fournissons des solutions numériques de bout en bout adaptées pour atteindre vos objectifs commerciaux et générer une croissance mesurable.',
+                'service-1-title': 'Optimisation pour les moteurs de recherche (SEO)', 'service-1-desc': 'Augmentez votre visibilité organique et attirez un trafic de haute qualité grâce à des stratégies de SEO éprouvées. Nous nous concentrons sur les améliorations de classement à long terme.',
+                'service-2-title': 'Publicité Pay-Per-Click (PPC)', 'service-2-desc': 'Maximisez votre retour sur investissement avec des campagnes PPC ciblées sur Google, Facebook et autres. Obtenez des résultats immédiats et contrôlez vos dépenses.',
+                'service-3-title': 'Marketing des médias sociaux', 'service-3-desc': 'Développez la notoriété de votre marque, engagez votre public et stimulez les conversions sur toutes les principales plateformes sociales avec un contenu créatif et des publicités ciblées.',
+                'service-4-title': 'Stratégie de Marketing de Contenu', 'service-4-desc': 'Créez un contenu convaincant et précieux qui attire et convertit vos clients idéaux. Stratégie, création et distribution incluses.',
+
+                'testimonials-title': 'Ce que disent nos clients',
+                'testimonial-1-text': '"Vidya Consultancy a transformé notre présence en ligne. Notre volume de leads a augmenté de 50 % en trois mois. Leur expertise SEO est inégalée!"', 'testimonial-1-author': '- A. Sharma, PDG de Tech Start-up',
+                'testimonial-2-text': '"L\'équipe PPC a fourni des résultats immédiats et très ciblés. Nous avons vu un fantastique retour sur investissement, ce qui en fait un partenaire inestimable."', 'testimonial-2-author': '- R. Khan, Propriétaire de boutique E-commerce',
+                'testimonial-3-text': '"Leurs campagnes sur les réseaux sociaux sont créatives et capturent véritablement la voix de notre marque. Nous avons maintenant une communauté très engagée et en pleine croissance."', 'testimonial-3-author': '- P. Deshpande, Responsable de marque de détail',
+
+                'faq-title': 'Questions Fréquemment Posées',
+                'faq-q1': 'Qu\'est-ce qui rend Vidya Consultancy différente ?',
+                'faq-a1': 'Nous sommes construits sur le principe de **\'Vidya\' (Connaissance)**, en nous concentrant sur des stratégies éthiques, basées sur les données et une transparence totale. Nous traitons l\'entreprise de chaque client comme la nôtre, visant une croissance durable à long terme plutôt que des solutions rapides et temporaires.',
+                'faq-q2': 'Dans combien de temps puis-je attendre des résultats du SEO ?',
+                'faq-a2': 'Le SEO est un investissement à long terme. Vous pouvez vous attendre à voir des améliorations initiales dans le classement et le trafic dans les **3 à 6 mois**. Pour les gains majeurs de mots-clés concurrentiels, il faut souvent 6 à 12 mois d\'efforts constants.',
+                'faq-q3': 'Fournissez-vous un support linguistique régional pour le marketing ?',
+                'faq-a3': 'Oui, absolument! Nous nous spécialisons dans les campagnes numériques hyper-locales, y compris la création de contenu et le ciblage publicitaire dans les principales langues indiennes comme le **hindi, le marathi et le bengali**, ainsi que les langues internationales comme l\'espagnol et le français.',
+
+                'about-title': 'À Propos de Vidya Consultancy',
+                'about-p1': 'Fondée sur le principe de **\'Vidya\' (Connaissance)**, nous sommes une équipe de stratèges numériques passionnés, de scientifiques des données et de spécialistes du marketing créatifs dédiés à fournir des résultats inégalés à nos clients à travers le monde et en Inde.',
+                'about-p2': 'Notre mission est de donner aux entreprises, petites et grandes, les moyens de naviguer dans le paysage numérique complexe avec confiance et d\'atteindre une croissance durable et mesurable. Nous ne faisons qu\'exécuter ; nous nous associons avec vous à chaque étape pour garantir que votre succès est construit sur des données et une stratégie solides.',
+                'about-cta': 'Envoyer un Email à Nos Experts',
+
+                'contact-title': 'Prêt à Développer Votre Entreprise ?', 'contact-tagline': 'Remplissez le formulaire ci-dessous ou contactez-nous directement.',
+                'contact-label-name': 'Nom', 'contact-label-email': 'Email', 'contact-label-message': 'Comment pouvons-nous vous aider ?', 'contact-button': 'Envoyer le Message',
+                'contact-or-call': 'Ou contactez-nous directement :', 'contact-phone': 'Mobile : +91 98765 43210', 'contact-email': 'Email : contact@vidyaconsultancy.com', 'contact-website': 'Site Web : www.vidyaconsultancy.com',
+
+                'footer-copyright': '© 2024 Vidya Consultancy. Tous droits réservés.', 'footer-address': 'Pune, Maharashtra, Inde'
+            },
+            'es': {
+                'page-title': 'Vidya Consultancy - Soluciones de Marketing Digital',
+                'nav-services': 'Servicios', 'nav-testimonials': 'Testimonios', 'nav-about': 'Sobre Nosotros', 'nav-quote': 'Obtener un Presupuesto', 'nav-faq': 'Preguntas Frecuentes', 'nav-contact': 'Contacto',
+                'hero-tag': 'Crecimiento Digital Estratégico',
+                'hero-title': 'Desbloquee todo el potencial de su marca',
+                'hero-tagline': 'Vidya Consultancy ofrece soluciones integrales de marketing digital para ayudar a su empresa a prosperar en el mundo online.',
+                'hero-cta-start': 'Comience su Proyecto Hoy', 'hero-cta-learn': 'Saber Más',
+
+                'services-title': 'Nuestros Servicios Principales', 'services-tagline': 'Proporcionamos soluciones digitales de extremo a extremo adaptadas para cumplir con sus objetivos comerciales y ofrecer un crecimiento medible.',
+                'service-1-title': 'Optimización de Motores de Búsqueda (SEO)', 'service-1-desc': 'Aumente su visibilidad orgánica y dirija tráfico de alta calidad con estrategias de SEO probadas. Nos enfocamos en mejoras de clasificación a largo plazo.',
+                'service-2-title': 'Publicidad de Pago Por Clic (PPC)', 'service-2-desc': 'Maximice su ROI con campañas de PPC dirigidas en Google, Facebook y más. Obtenga resultados inmediatos y controle sus gastos.',
+                'service-3-title': 'Marketing en Redes Sociales', 'service-3-desc': 'Cree conciencia de marca, involucre a su audiencia e impulse conversiones en las principales plataformas sociales con contenido creativo y anuncios dirigidos.',
+                'service-4-title': 'Estrategia de Marketing de Contenido', 'service-4-desc': 'Cree contenido convincente y valioso que atraiga y convierta a sus clientes ideales. Estrategia, creación y distribución incluidas.',
+
+                'testimonials-title': 'Lo que Dicen Nuestros Clientes',
+                'testimonial-1-text': '"Vidya Consultancy transformó nuestra presencia en línea. Nuestro volumen de leads aumentó en un 50 % en tres meses. ¡Su experiencia en SEO es inigualable!"', 'testimonial-1-author': '- A. Sharma, CEO de Tech Start-up',
+                'testimonial-2-text': '"El equipo de PPC entregó resultados inmediatos y altamente dirigidos. Vimos un fantástico retorno de la inversión, lo que los convierte en un socio invaluable."', 'testimonial-2-author': '- R. Khan, Propietario de Tienda de Comercio Electrónico',
+                'testimonial-3-text': '"Sus campañas en redes sociales son creativas y realmente capturan la voz de nuestra marca. Ahora tenemos una comunidad altamente comprometida y en crecimiento."', 'testimonial-3-author': '- P. Deshpande, Gerente de Marca Minorista',
+
+                'faq-title': 'Preguntas Frecuentes',
+                'faq-q1': '¿Qué hace que Vidya Consultancy sea diferente?',
+                'faq-a1': 'Estamos construidos sobre el principio de **\'Vidya\' (Conocimiento)**, centrándonos en estrategias éticas, basadas en datos y total transparencia. Tratamos el negocio de cada cliente como propio, buscando un crecimiento sostenible a largo plazo en lugar de soluciones rápidas y temporales.',
+                'faq-q2': '¿Qué tan pronto puedo esperar resultados de SEO?',
+                'faq-a2': 'El SEO es una inversión a largo plazo. Puede esperar ver mejoras iniciales en la clasificación y el tráfico dentro de **3 a 6 meses**. Para ganancias importantes de palabras clave competitivas, a menudo se necesitan de 6 a 12 meses de esfuerzo constante.',
+                'faq-q3': '¿Ofrecen soporte de idiomas regionales para marketing?',
+                'faq-a3': '¡Sí, absolutamente! Nos especializamos en campañas digitales hiperlocales, incluida la creación de contenido y la orientación de anuncios en los principales idiomas indios como el **hindi, marathi y bengalí**, así como idiomas internacionales como el español y el francés.',
+
+                'about-title': 'Sobre Vidya Consultancy',
+                'about-p1': 'Fundada bajo el principio de **\'Vidya\' (Conocimiento)**, somos un equipo de estrategas digitales apasionados, científicos de datos y especialistas en marketing creativos dedicados a ofrecer resultados incomparables para nuestros clientes en todo el mundo y en la India.',
+                'about-p2': 'Nuestra misión es empoderar a las empresas, pequeñas y grandes, para que naveguen por el complejo panorama digital con confianza y logren un crecimiento sostenible y medible. No solo ejecutamos; nos asociamos con usted en cada paso del camino para garantizar que su éxito se base en datos y una estrategia sólidos.',
+                'about-cta': 'Enviar Correo a Nuestros Expertos',
+
+                'contact-title': '¿Listo para hacer crecer su negocio?', 'contact-tagline': 'Rellene el siguiente formulario o contáctenos directamente.',
+                'contact-label-name': 'Nombre', 'contact-label-email': 'Correo Electrónico', 'contact-label-message': '¿Cómo podemos ayudarte?', 'contact-button': 'Enviar Mensaje',
+                'contact-or-call': 'O comuníquese directamente:', 'contact-phone': 'Móvil: +91 98765 43210', 'contact-email': 'Correo: contact@vidyaconsultancy.com', 'contact-website': 'Sitio Web: www.vidyaconsultancy.com',
+
+                'footer-copyright': '© 2024 Vidya Consultancy. Todos los derechos reservados.', 'footer-address': 'Pune, Maharashtra, India'
+            },
+            'hi': {
+                'page-title': 'विद्या कंसल्टेंसी - डिजिटल मार्केटिंग समाधान',
+                'nav-services': 'सेवाएँ', 'nav-testimonials': 'प्रशंसापत्र', 'nav-about': 'हमारे बारे में', 'nav-quote': 'कोट प्राप्त करें', 'nav-faq': 'अक्सर पूछे जाने वाले प्रश्न', 'nav-contact': 'संपर्क',
+                'hero-tag': 'रणनीतिक डिजिटल विकास',
+                'hero-title': 'अपने ब्रांड की पूरी क्षमता को अनलॉक करें',
+                'hero-tagline': 'विद्या कंसल्टेंसी आपके व्यवसाय को ऑनलाइन दुनिया में फलने-फूलने में मदद करने के लिए व्यापक डिजिटल मार्केटिंग समाधान प्रदान करती है।',
+                'hero-cta-start': 'आज ही अपना प्रोजेक्ट शुरू करें', 'hero-cta-learn': 'और जानें',
+
+                'services-title': 'हमारी मुख्य सेवाएँ', 'services-tagline': 'हम आपके व्यावसायिक उद्देश्यों को पूरा करने और मापने योग्य विकास प्रदान करने के लिए अनुकूलित एंड-टू-एंड डिजिटल समाधान प्रदान करते हैं।',
+                'service-1-title': 'खोज इंजन अनुकूलन (SEO)', 'service-1-desc': 'सिद्ध SEO रणनीतियों के साथ अपनी ऑर्गेनिक दृश्यता बढ़ाएँ और उच्च-गुणवत्ता वाला ट्रैफ़िक चलाएँ। हम दीर्घकालिक रैंकिंग सुधारों पर ध्यान केंद्रित करते हैं।',
+                'service-2-title': 'पे-पर-क्लिक (PPC) विज्ञापन', 'service-2-desc': 'Google, Facebook, और अन्य पर लक्षित PPC अभियानों के साथ अपने ROI को अधिकतम करें। तत्काल परिणाम प्राप्त करें और अपने खर्च को नियंत्रित करें।',
+                'service-3-title': 'सोशल मीडिया मार्केटिंग', 'service-3-desc': 'रचनात्मक सामग्री और लक्षित विज्ञापनों के साथ सभी प्रमुख सोशल प्लेटफॉर्म पर ब्रांड जागरूकता का निर्माण करें, अपने दर्शकों को संलग्न करें और रूपांतरण बढ़ाएँ।',
+                'service-4-title': 'सामग्री विपणन रणनीति', 'service-4-desc': 'आकर्षक, मूल्यवान सामग्री बनाएँ जो आपके आदर्श ग्राहकों को आकर्षित और परिवर्तित करती है। रणनीति, निर्माण और वितरण शामिल है।',
+
+                'testimonials-title': 'हमारे ग्राहक क्या कहते हैं',
+                'testimonial-1-text': '"विद्या कंसल्टेंसी ने हमारी ऑनलाइन उपस्थिति को बदल दिया। हमारे लीड की मात्रा तीन महीनों के भीतर 50% बढ़ गई। उनकी SEO विशेषज्ञता बेजोड़ है!"', 'testimonial-1-author': '- ए. शर्मा, टेक स्टार्टअप सीईओ',
+                'testimonial-2-text': '"PPC टीम ने तत्काल, अत्यधिक लक्षित परिणाम दिए। हमने निवेश पर शानदार रिटर्न देखा, जो उन्हें एक अमूल्य भागीदार बनाता है।"', 'testimonial-2-author': '- आर. खान, ई-कॉमर्स स्टोर मालिक',
+                'testimonial-3-text': '"उनके सोशल मीडिया अभियान रचनात्मक हैं और वास्तव में हमारे ब्रांड की आवाज़ को दर्शाते हैं। अब हमारे पास एक अत्यधिक संलग्न और बढ़ती हुई समुदाय है।"', 'testimonial-3-author': '- पी. देशपांडे, रिटेल ब्रांड मैनेजर',
+
+                'faq-title': 'अक्सर पूछे जाने वाले प्रश्न',
+                'faq-q1': 'विद्या कंसल्टेंसी क्यों अलग है?',
+                'faq-a1': 'हम **\'विद्या\' (ज्ञान)** के सिद्धांत पर निर्मित हैं, जो नैतिक, डेटा-संचालित रणनीतियों और पूर्ण पारदर्शिता पर ध्यान केंद्रित करते हैं। हम प्रत्येक ग्राहक के व्यवसाय को अपना मानते हैं, त्वरित, अस्थायी समाधानों के बजाय टिकाऊ, दीर्घकालिक विकास का लक्ष्य रखते हैं।',
+                'faq-q2': 'SEO से परिणाम कब तक अपेक्षित हैं?',
+                'faq-a2': 'SEO एक दीर्घकालिक निवेश है। आप **3 से 6 महीने** के भीतर रैंकिंग और ट्रैफ़िक में शुरुआती सुधार देखने की उम्मीद कर सकते हैं। प्रमुख प्रतिस्पर्धी कीवर्ड जीत के लिए, इसमें अक्सर 6 से 12 महीने का निरंतर प्रयास लगता है।',
+                'faq-q3': 'क्या आप मार्केटिंग के लिए क्षेत्रीय भाषा समर्थन प्रदान करते हैं?',
+                'faq-a3': 'हाँ, बिल्कुल! हम **हिंदी, मराठी, और बंगाली** जैसी प्रमुख भारतीय भाषाओं, साथ ही स्पेनिश और फ्रेंच जैसी अंतर्राष्ट्रीय भाषाओं में सामग्री निर्माण और विज्ञापन लक्ष्यीकरण सहित अति-स्थानीय डिजिटल अभियानों में विशेषज्ञ हैं।',
+
+                'about-title': 'विद्या कंसल्टेंसी के बारे में',
+                'about-p1': '**\'विद्या\' (ज्ञान)** के सिद्धांत पर स्थापित, हम भावुक डिजिटल रणनीतिकारों, डेटा वैज्ञानिकों और रचनात्मक विपणक की एक टीम हैं जो हमारे ग्राहकों के लिए अद्वितीय परिणाम देने के लिए समर्पित हैं, चाहे वे विश्व स्तर पर हों या भारत में।',
+                'about-p2': 'हमारा मिशन छोटे और बड़े व्यवसायों को आत्मविश्वास के साथ जटिल डिजिटल परिदृश्य को नेविगेट करने और टिकाऊ, मापने योग्य विकास प्राप्त करने के लिए सशक्त बनाना है। हम सिर्फ निष्पादित नहीं करते हैं; हम यह सुनिश्चित करने के लिए हर कदम पर आपके साथ साझेदारी करते हैं कि आपकी सफलता ठोस डेटा और रणनीति पर बनी है।',
+                'about-cta': 'हमारे विशेषज्ञों को ईमेल करें',
+
+                'contact-title': 'क्या आप अपना व्यवसाय बढ़ाना चाहते हैं?', 'contact-tagline': 'निःशुल्क परामर्श शेड्यूल करने के लिए नीचे दिया गया फ़ॉर्म भरें या हमसे सीधे संपर्क करें।',
+                'contact-label-name': 'नाम', 'contact-label-email': 'ईमेल', 'contact-label-message': 'हम आपकी कैसे मदद कर सकते हैं?', 'contact-button': 'संदेश भेजें',
+                'contact-or-call': 'या सीधे संपर्क करें:', 'contact-phone': 'मोबाइल: +91 98765 43210', 'contact-email': 'ईमेल: contact@vidyaconsultancy.com', 'contact-website': 'वेबसाइट: www.vidyaconsultancy.com',
+
+                'footer-copyright': '© 2024 विद्या कंसल्टेंसी। सर्वाधिकार सुरक्षित।', 'footer-address': 'पुणे, महाराष्ट्र, भारत'
+            },
+            'mr': {
+                'page-title': 'विद्या कन्सल्टन्सी - डिजिटल मार्केटिंग सोल्यूशन्स',
+                'nav-services': 'सेवा', 'nav-testimonials': 'प्रशंसापत्र', 'nav-about': 'आमच्याबद्दल', 'nav-quote': 'कोट मिळवा', 'nav-faq': 'वारंवार विचारले जाणारे प्रश्न', 'nav-contact': 'संपर्क',
+                'hero-tag': 'रणनीतिक डिजिटल वाढ',
+                'hero-title': 'तुमच्या ब्रँडची पूर्ण क्षमता अनलॉक करा',
+                'hero-tagline': 'विद्या कन्सल्टन्सी तुमच्या व्यवसायाला ऑनलाइन जगात भरभराट होण्यास मदत करण्यासाठी सर्वसमावेशक डिजिटल मार्केटिंग सोल्यूशन्स देते.',
+                'hero-cta-start': 'आजच तुमचा प्रकल्प सुरू करा', 'hero-cta-learn': 'अधिक जाणून घ्या',
+
+                'services-title': 'आमच्या मुख्य सेवा', 'services-tagline': 'आम्ही तुमच्या व्यवसायाच्या उद्दिष्टांची पूर्तता करण्यासाठी आणि मोजता येण्याजोगा विकास देण्यासाठी तयार केलेले एंड-टू-एंड डिजिटल सोल्यूशन्स प्रदान करतो.',
+                'service-1-title': 'शोध इंजिन ऑप्टिमायझेशन (SEO)', 'service-1-desc': 'सिद्ध SEO धोरणांसह तुमची ऑरगॅनिक दृश्यमानता वाढवा आणि उच्च-गुणवत्तेचा ट्रॅफिक मिळवा. आम्ही दीर्घकाळ टिकणाऱ्या रँकिंग सुधारणांवर लक्ष केंद्रित करतो.',
+                'service-2-title': 'पे-पर-क्लिक (PPC) जाहिरात', 'service-2-desc': 'Google, Facebook आणि इतरांवर लक्ष्यित PPC मोहिमांसह तुमचा ROI वाढवा. त्वरित परिणाम मिळवा आणि तुमचा खर्च नियंत्रित करा.',
+                'service-3-title': 'सोशल मीडिया मार्केटिंग', 'service-3-desc': 'सर्जनशील सामग्री आणि लक्ष्यित जाहिरातींसह सर्व प्रमुख सोशल प्लॅटफॉर्मवर ब्रँड जागरूकता वाढवा, तुमच्या प्रेक्षकांना व्यस्त ठेवा आणि रूपांतरण वाढवा.',
+                'service-4-title': 'सामग्री विपणन धोरण', 'service-4-desc': 'आकर्षक, मौल्यवान सामग्री तयार करा जी तुमच्या आदर्श ग्राहकांना आकर्षित करते आणि रूपांतरित करते. धोरण, निर्मिती आणि वितरण समाविष्ट आहे.',
+
+                'testimonials-title': 'आमचे ग्राहक काय म्हणतात',
+                'testimonial-1-text': '"विद्या कन्सल्टन्सीने आमची ऑनलाइन उपस्थिती बदलली. तीन महिन्यांत आमच्या लीड्सची संख्या 50% वाढली. त्यांची SEO कौशल्ये अतुलनीय आहेत!"', 'testimonial-1-author': '- ए. शर्मा, टेक स्टार्टअपचे सीईओ',
+                'testimonial-2-text': '"पीपीसी टीमने त्वरित, अत्यंत लक्ष्यित परिणाम दिले. आम्हाला गुंतवणुकीवर विलक्षण परतावा मिळाला, ज्यामुळे ते एक अमूल्य भागीदार बनले आहेत."', 'testimonial-2-author': '- आर. खान, ई-कॉमर्स स्टोअरचे मालक',
+                'testimonial-3-text': '"त्यांच्या सोशल मीडिया मोहिमा सर्जनशील आहेत आणि आमच्या ब्रँडचा आवाज खऱ्या अर्थाने कॅप्चर करतात. आमच्याकडे आता एक अत्यंत व्यस्त आणि वाढणारा समुदाय आहे."', 'testimonial-3-author': '- पी. देशपांडे, रिटेल ब्रँड व्यवस्थापक',
+
+                'faq-title': 'वारंवार विचारले जाणारे प्रश्न',
+                'faq-q1': 'विद्या कन्सल्टन्सी वेगळी का आहे?',
+                'faq-a1': 'आम्ही **\'विद्या\' (ज्ञान)** च्या तत्त्वावर स्थापित आहोत, नैतिक, डेटा-चालित धोरणे आणि पूर्ण पारदर्शकतेवर लक्ष केंद्रित करतो. आम्ही प्रत्येक ग्राहकाच्या व्यवसायाला आमचा व्यवसाय मानतो, जलद, तात्पुरत्या उपायांऐवजी टिकाऊ, दीर्घकालीन वाढीचे उद्दीष्ट ठेवतो.',
+                'faq-q2': 'SEO कडून किती लवकर परिणाम अपेक्षित आहेत?',
+                'faq-a2': 'SEO ही दीर्घकालीन गुंतवणूक आहे. तुम्ही **3 ते 6 महिन्यांत** रँकिंग आणि ट्रॅफिकमध्ये सुरुवातीचे सुधारणा पाहण्याची अपेक्षा करू शकता. प्रमुख स्पर्धात्मक कीवर्ड विजयांसाठी, यात अनेकदा 6 ते 12 महिने सातत्यपूर्ण प्रयत्न लागतात.',
+                'faq-q3': 'तुम्ही मार्केटिंगसाठी प्रादेशिक भाषेचा आधार पुरवता का?',
+                'faq-a3': 'होय, निश्चितपणे! आम्ही **हिंदी, मराठी आणि बंगाली** यांसारख्या प्रमुख भारतीय भाषांमध्ये तसेच स्पॅनिश आणि फ्रेंच सारख्या आंतरराष्ट्रीय भाषांमध्ये सामग्री निर्मिती आणि जाहिरात लक्ष्यीकरण समाविष्ट असलेल्या अति-स्थानिक डिजिटल मोहिमांमध्ये विशेषज्ञ आहोत.',
+
+                'about-title': 'विद्या कन्सल्टन्सी बद्दल',
+                'about-p1': '**\'विद्या\' (ज्ञान)** च्या तत्त्वावर स्थापित, आम्ही उत्साही डिजिटल रणनीतिकार, डेटा वैज्ञानिक आणि सर्जनशील विपणकांची एक टीम आहोत जी आमच्या ग्राहकांना जगभरात आणि भारतात अतुलनीय परिणाम देण्यासाठी समर्पित आहे.',
+                'about-p2': 'आत्मविश्वासाने जटिल डिजिटल लँडस्केपमध्ये नेव्हिगेट करण्यासाठी आणि टिकाऊ, मोजता येण्याजोगा विकास साधण्यासाठी लहान आणि मोठ्या व्यवसायांना सशक्त बनवणे हे आमचे ध्येय आहे. आम्ही फक्त अंमलबजावणी करत नाही; तुमचा यशाचा आधार ठोस डेटा आणि धोरणावर आधारित आहे हे सुनिश्चित करण्यासाठी आम्ही प्रत्येक टप्प्यावर तुमच्यासोबत भागीदारी करतो.',
+                'about-cta': 'आमच्या तज्ञांना ईमेल करा',
+
+                'contact-title': 'तुमचा व्यवसाय वाढवण्यासाठी तयार आहात?', 'contact-tagline': 'विनामूल्य सल्लामसलत शेड्यूल करण्यासाठी खालील फॉर्म भरा किंवा थेट आमच्याशी संपर्क साधा.',
+                'contact-label-name': 'नाव', 'contact-label-email': 'ईमेल', 'contact-label-message': 'आम्ही तुम्हाला कशी मदत करू शकतो?', 'contact-button': 'संदेश पाठवा',
+                'contact-or-call': 'किंवा थेट संपर्क साधा:', 'contact-phone': 'मोबाइल: +91 98765 43210', 'contact-email': 'ईमेल: contact@vidyaconsultancy.com', 'contact-website': 'वेबसाइट: www.vidyaconsultancy.com',
+
+                'footer-copyright': '© 2024 विद्या कन्सल्टन्सी. सर्व हक्क राखीव.', 'footer-address': 'पुणे, महाराष्ट्र, भारत'
+            },
+            'bn': {
+                'page-title': 'বিদ্যা কনসালটেন্সি - ডিজিটাল মার্কেটিং সলিউশন',
+                'nav-services': 'পরিষেবাগুলি', 'nav-testimonials': 'প্রশংসাপত্র', 'nav-about': 'আমাদের সম্পর্কে', 'nav-quote': 'একটি উদ্ধৃতি পান', 'nav-faq': 'প্রায়শই জিজ্ঞাসিত প্রশ্ন', 'nav-contact': 'যোগাযোগ',
+                'hero-tag': 'কৌশলগত ডিজিটাল বৃদ্ধি',
+                'hero-title': 'আপনার ব্র্যান্ডের সম্পূর্ণ সম্ভাবনা আনলক করুন',
+                'hero-tagline': 'বিদ্যা কনসালটেন্সি আপনার ব্যবসাকে অনলাইন বিশ্বে উন্নতি করতে সহায়তা করার জন্য ব্যাপক ডিজিটাল মার্কেটিং সমাধান সরবরাহ করে।',
+                'hero-cta-start': 'আজই আপনার প্রকল্প শুরু করুন', 'hero-cta-learn': 'আরও জানুন',
+
+                'services-title': 'আমাদের মূল পরিষেবাগুলি', 'services-tagline': 'আমরা আপনার ব্যবসার উদ্দেশ্য পূরণের জন্য এবং পরিমাপযোগ্য বৃদ্ধি প্রদানের জন্য তৈরি এন্ড-টু-এন্ড ডিজিটাল সমাধান সরবরাহ করি।',
+                'service-1-title': 'সার্চ ইঞ্জিন অপটিমাইজেশন (SEO)', 'service-1-desc': 'প্রমাণিত এসইও কৌশলগুলির সাথে আপনার জৈব দৃশ্যমানতা বাড়ান এবং উচ্চ-মানের ট্র্যাফিক চালান। আমরা দীর্ঘমেয়াদী র‍্যাঙ্কিং উন্নতির উপর ফোকাস করি।',
+                'service-2-title': 'পে-পার-ক্লিক (PPC) বিজ্ঞাপন', 'service-2-desc': 'Google, Facebook, এবং আরও অনেক কিছুতে লক্ষ্যযুক্ত পিপিসি ক্যাম্পেইনগুলির মাধ্যমে আপনার ROI সর্বাধিক করুন। তাত্ক্ষণিক ফলাফল পান এবং আপনার খরচ নিয়ন্ত্রণ করুন।',
+                'service-3-title': 'সোশ্যাল মিডিয়া মার্কেটিং', 'service-3-desc': 'সৃজনশীল বিষয়বস্তু এবং লক্ষ্যযুক্ত বিজ্ঞাপনগুলির মাধ্যমে সমস্ত প্রধান সামাজিক প্ল্যাটফর্মে ব্র্যান্ড সচেতনতা তৈরি করুন, আপনার দর্শকদের নিযুক্ত করুন এবং রূপান্তর চালান।',
+                'service-4-title': 'বিষয়বস্তু বিপণন কৌশল', 'service-4-desc': 'আকর্ষণীয়, মূল্যবান বিষয়বস্তু তৈরি করুন যা আপনার আদর্শ গ্রাহকদের আকর্ষণ করে এবং রূপান্তরিত করে। কৌশল, তৈরি এবং বিতরণ অন্তর্ভুক্ত।',
+
+                'testimonials-title': 'আমাদের ক্লায়েন্টরা কী বলেন',
+                'testimonial-1-text': '"বিদ্যা কনসালটেন্সি আমাদের অনলাইন উপস্থিতি বদলে দিয়েছে। তিন মাসের মধ্যে আমাদের লিডের পরিমাণ ৫০% বৃদ্ধি পেয়েছে। তাদের এসইও দক্ষতা অতুলনীয়!"', 'testimonial-1-author': '- এ. শর্মা, টেক স্টার্ট-আপ সিইও',
+                'testimonial-2-text': '"পিপিসি টিম তাৎক্ষণিক, অত্যন্ত লক্ষ্যযুক্ত ফলাফল দিয়েছে। আমরা বিনিয়োগের উপর একটি দুর্দান্ত রিটার্ন দেখেছি, যা তাদের একটি অমূল্য অংশীদার করে তোলে।"', 'testimonial-2-author': '- আর. খান, ই-কমার্স স্টোরের মালিক',
+                'testimonial-3-text': '"তাদের সোশ্যাল মিডিয়া ক্যাম্পেইনগুলি সৃজনশীল এবং সত্যিই আমাদের ব্র্যান্ডের কণ্ঠস্বরকে তুলে ধরে। এখন আমাদের একটি অত্যন্ত নিযুক্ত এবং ক্রমবর্ধমান সম্প্রদায় রয়েছে।"', 'testimonial-3-author': '- পি. দেশপাণ্ডে, রিটেইল ব্র্যান্ড ম্যানেজার',
+
+                'faq-title': 'প্রায়শই জিজ্ঞাসিত প্রশ্ন',
+                'faq-q1': 'বিদ্যা কনসালটেন্সিকে কী আলাদা করে তোলে?',
+                'faq-a1': 'আমরা **\'বিদ্যা\' (জ্ঞান)** নীতির উপর নির্মিত, নৈতিক, ডেটা-চালিত কৌশল এবং সম্পূর্ণ স্বচ্ছতার উপর ফোকাস করে। আমরা প্রতিটি ক্লায়েন্টের ব্যবসাকে আমাদের নিজস্ব হিসাবে বিবেচনা করি, দ্রুত, অস্থায়ী সমাধানের পরিবর্তে টেকসই, দীর্ঘমেয়াদী বৃদ্ধির লক্ষ্য রাখি।',
+                'faq-q2': 'এসইও থেকে কত তাড়াতাড়ি ফলাফল আশা করা যায়?',
+                'faq-a2': 'এসইও একটি দীর্ঘমেয়াদী বিনিয়োগ। আপনি **৩ থেকে ৬ মাসের** মধ্যে র‍্যাঙ্কিং এবং ট্র্যাফিকের প্রাথমিক উন্নতি দেখতে আশা করতে পারেন। প্রধান প্রতিযোগিতামূলক কীওয়ার্ড জেতার জন্য, এটি প্রায়শই ৬ থেকে ১২ মাসের ধারাবাহিক প্রচেষ্টা নেয়।',
+                'faq-q3': 'আপনারা কি বিপণনের জন্য আঞ্চলিক ভাষার সমর্থন সরবরাহ করেন?',
+                'faq-a3': 'হ্যাঁ, অবশ্যই! আমরা স্প্যানিশ এবং ফরাসি-এর মতো আন্তর্জাতিক ভাষার পাশাপাশি **হিন্দি, মারাঠি, এবং বাংলা**-এর মতো প্রধান ভারতীয় ভাষাগুলিতে বিষয়বস্তু তৈরি এবং বিজ্ঞাপন লক্ষ্যকরণ সহ হাইপার-স্থানীয় ডিজিটাল প্রচারাভিযানে বিশেষজ্ঞ।',
+
+                'about-title': 'বিদ্যা কনসালটেন্সি সম্পর্কে',
+                'about-p1': '**\'বিদ্যা\' (জ্ঞান)** নীতির উপর প্রতিষ্ঠিত, আমরা উত্সাহী ডিজিটাল কৌশলবিদ, ডেটা বিজ্ঞানী এবং সৃজনশীল বিপণনকারীদের একটি দল যারা বিশ্বব্যাপী এবং ভারতে আমাদের ক্লায়েন্টদের জন্য অতুলনীয় ফলাফল প্রদানের জন্য নিবেদিত।',
+                'about-p2': 'আমাদের লক্ষ্য হল ছোট এবং বড় উভয় ব্যবসাকে আত্মবিশ্বাসের সাথে জটিল ডিজিটাল ল্যান্ডস্কেপে নেভিগেট করতে এবং টেকসই, পরিমাপযোগ্য বৃদ্ধি অর্জন করতে সক্ষম করা। আমরা কেবল এক্সিকিউট করি না; আপনার সাফল্য যেন শক্ত ডেটা এবং কৌশলের উপর নির্মিত হয় তা নিশ্চিত করতে আমরা প্রতিটি পদক্ষেপে আপনার সাথে অংশীদার হই।',
+                'about-cta': 'আমাদের বিশেষজ্ঞদের ইমেল করুন',
+
+                'contact-title': 'আপনার ব্যবসা বাড়াতে প্রস্তুত?', 'contact-tagline': 'একটি বিনামূল্যের পরামর্শের সময়সূচী করতে নিচের ফর্মটি পূরণ করুন বা সরাসরি আমাদের সাথে যোগাযোগ করুন।',
+                'contact-label-name': 'নাম', 'contact-label-email': 'ইমেইল', 'contact-label-message': 'আমরা আপনাকে কিভাবে সাহায্য করতে পারি?', 'contact-button': 'বার্তা পাঠান',
+                'contact-or-call': 'অথবা সরাসরি যোগাযোগ করুন:', 'contact-phone': 'মোবাইল: +91 98765 43210', 'contact-email': 'ইমেল: contact@vidyaconsultancy.com', 'contact-website': 'ওয়েবসাইট: www.vidyaconsultancy.com',
+
+                'footer-copyright': '© 2024 বিদ্যা কনসালটেন্সি। সর্বস্বত্ব সংরক্ষিত।', 'footer-address': 'পুনে, মহারাষ্ট্র, ভারত'
+            },
+            'ur': {
+                'page-title': 'ودیا کنسلٹنسی - ڈیجیٹل مارکیٹنگ سلوشنز',
+                'nav-services': 'خدمات', 'nav-testimonials': 'تعریفیں', 'nav-about': 'ہمارے بارے میں', 'nav-quote': 'قیمت حاصل کریں', 'nav-faq': 'اکثر پوچھے گئے سوالات', 'nav-contact': 'رابطہ',
+                'hero-tag': 'اسٹریٹجک ڈیجیٹل گروتھ',
+                'hero-title': 'اپنے برانڈ کی پوری صلاحیت کو انلاک کریں',
+                'hero-tagline': 'ودیا کنسلٹنسی آپ کے کاروبار کو آن لائن دنیا میں ترقی کی منازل طے کرنے میں مدد کرنے کے لیے جامع ڈیجیٹل مارکیٹنگ کے حل پیش کرتی ہے۔',
+                'hero-cta-start': 'آج ہی اپنا پروجیکٹ شروع کریں', 'hero-cta-learn': 'مزید جانیں',
+
+                'services-title': 'ہماری بنیادی خدمات', 'services-tagline': 'ہم آپ کے کاروباری مقاصد کو پورا کرنے اور قابل پیمائش ترقی فراہم کرنے کے لیے تیار کردہ اینڈ ٹو اینڈ ڈیجیٹل حل فراہم کرتے ہیں۔',
+                'service-1-title': 'سرچ انجن آپٹیمائزیشن (SEO)', 'service-1-desc': 'ثابت شدہ SEO حکمت عملیوں کے ساتھ اپنی نامیاتی مرئیت میں اضافہ کریں اور اعلیٰ معیار کا ٹریفک لائیں۔ ہم طویل مدتی درجہ بندی کی بہتری پر توجہ مرکوز کرتے ہیں۔',
+                'service-2-title': 'پے پر کلک (PPC) اشتہارات', 'service-2-desc': 'Google، Facebook، اور مزید پر ھدف بنائے گئے PPC مہموں کے ساتھ اپنے ROI کو زیادہ سے زیادہ کریں۔ فوری نتائج حاصل کریں اور اپنے اخراجات کو کنٹرول کریں۔',
+                'service-3-title': 'سوشل میڈیا مارکیٹنگ', 'service-3-desc': 'تخلیقی مواد اور ھدف بنائے گئے اشتہارات کے ساتھ تمام بڑے سوشل پلیٹ فارمز پر برانڈ بیداری پیدا کریں، اپنے سامعین کو شامل کریں، اور تبادلوں کو فروغ دیں۔',
+                'service-4-title': 'مواد کی مارکیٹنگ کی حکمت عملی', 'service-4-desc': 'ایسا دلکش، قیمتی مواد بنائیں جو آپ کے مثالی صارفین کو اپنی طرف متوجہ کرے اور تبدیل کرے۔ حکمت عملی، تخلیق، اور تقسیم شامل ہے۔',
+
+                'testimonials-title': 'ہمارے کلائنٹس کیا کہتے ہیں',
+                'testimonial-1-text': '"ودیا کنسلٹنسی نے ہماری آن لائن موجودگی کو تبدیل کر دیا۔ ہمارے لیڈ کی تعداد تین ماہ کے اندر 50% بڑھ گئی۔ ان کی SEO مہارت بے مثال ہے!"', 'testimonial-1-author': '- اے شرما، ٹیک اسٹارٹ اپ سی ای او',
+                'testimonial-2-text': '"PPC ٹیم نے فوری، انتہائی ھدف بنائے گئے نتائج دیے۔ ہم نے سرمایہ کاری پر ایک شاندار منافع دیکھا، جو انہیں ایک انمول پارٹنر بناتا ہے۔"', 'testimonial-2-author': '- آر خان، ای کامرس اسٹور مالک',
+                'testimonial-3-text': '"ان کی سوشل میڈیا مہمات تخلیقی ہیں اور واقعی ہمارے برانڈ کی آواز کو اپنی گرفت میں لیتی ہیں۔ اب ہمارے پاس ایک انتہائی مشغول اور بڑھتی ہوئی کمیونٹی ہے۔"', 'testimonial-3-author': '- پی دیشپانڈے، ریٹیل برانڈ مینیجر',
+
+                'faq-title': 'اکثر پوچھے گئے سوالات',
+                'faq-q1': 'ودیا کنسلٹنسی کو کیا چیز مختلف بناتی ہے؟',
+                'faq-a1': 'ہم **\'ودیا\' (علم)** کے اصول پر بنائے گئے ہیں، جو اخلاقی، ڈیٹا پر مبنی حکمت عملیوں اور مکمل شفافیت پر توجہ مرکوز کرتے ہیں۔ ہم ہر کلائنٹ کے کاروبار کو اپنا سمجھتے ہیں، فوری، عارضی حل کے بجائے پائیدار، طویل مدتی ترقی کا ہدف رکھتے ہیں۔',
+                'faq-q2': 'SEO سے نتائج کب تک متوقع ہیں؟',
+                'faq-a2': 'SEO ایک طویل مدتی سرمایہ کاری ہے۔ آپ **3 سے 6 ماہ** کے اندر درجہ بندی اور ٹریفک میں ابتدائی بہتری دیکھنے کی توقع کر سکتے ہیں۔ بڑی مسابقتی کلیدی الفاظ کی فتوحات کے لیے، اس میں اکثر 6 سے 12 ماہ کی مسلسل کوشش درکار ہوتی ہے۔',
+                'faq-q3': 'کیا آپ مارکیٹنگ کے لیے علاقائی زبان کی حمایت فراہم کرتے ہیں؟',
+                'faq-a3': 'جی ہاں، بالکل! ہم **ہندی، مراٹھی، اور بنگالی** جیسی بڑی ہندوستانی زبانوں کے ساتھ ساتھ اسپینش اور فرانسیسی جیسی بین الاقوامی زبانوں میں مواد کی تخلیق اور اشتہارات کی ھدف بندی سمیت ہائپر-لوکل ڈیجیٹل مہمات میں مہارت رکھتے ہیں۔',
+
+                'about-title': 'ودیا کنسلٹنسی کے بارے میں',
+                'about-p1': '**\'ودیا\' (علم)** کے اصول پر قائم، ہم پرجوش ڈیجیٹل حکمت عملی سازوں، ڈیٹا سائنسدانوں اور تخلیقی مارکیٹرز کی ایک ٹیم ہیں جو اپنے کلائنٹس کے لیے بے مثال نتائج فراہم کرنے کے لیے وقف ہیں۔ ہم شفاف، اخلاقی اور اپنی مرضی کے مطابق حکمت عملیوں پر یقین رکھتے ہیں۔',
+                'about-p2': 'ہمارا مشن چھوٹے اور بڑے کاروباروں کو اعتماد کے ساتھ پیچیدہ ڈیجیٹل منظر نامے میں نیویگیٹ کرنے اور پائیدار، قابل پیمائش ترقی حاصل کرنے کے لیے بااختیار بنانا ہے۔ ہم صرف عمل درآمد نہیں کرتے؛ ہم یہ یقینی بنانے کے لیے ہر قدم پر آپ کے ساتھ شراکت کرتے ہیں کہ آپ کی کامیابی ٹھوس ڈیٹا اور حکمت عملی پر بنی ہے۔',
+                'about-cta': 'ہمارے ماہرین کو ای میل کریں',
+
+                'contact-title': 'اپنے کاروبار کو بڑھانے کے لیے تیار ہیں؟', 'contact-tagline': 'مفت مشاورت کا شیڈول بنانے کے لیے نیچے دیا گیا فارم پُر کریں یا ہم سے براہ راست رابطہ کریں۔',
+                'contact-label-name': 'نام', 'contact-label-email': 'ای میل', 'contact-label-message': 'ہم آپ کی کس طرح مدد کر سکتے ہیں؟', 'contact-button': 'پیغام بھیجیں',
+                'contact-or-call': 'یا براہ راست رابطہ کریں:', 'contact-phone': 'موبائل: +91 98765 43210', 'contact-email': 'ای میل: contact@vidyaconsultancy.com', 'contact-website': 'ویب سائٹ: www.vidyaconsultancy.com',
+
+                'footer-copyright': '© 2024 ودیا کنسلٹنسی۔ تمام حقوق محفوظ ہیں۔', 'footer-address': 'پونے، مہاراشٹر، بھارت'
+            }
+        };
+
+        const translate = (lang) => {
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    element.innerHTML = translations[lang][key];
+                }
+            });
+            // Update HTML lang attribute and set direction for RTL (Urdu)
+            document.querySelector('html').setAttribute('lang', lang);
+            document.body.dir = (lang === 'ur') ? 'rtl' : 'ltr';
+        };
+
+        const languageSwitcher = document.getElementById('language-switcher');
+        
+        // Event listeners for language change
+        if (languageSwitcher) {
+            languageSwitcher.addEventListener('change', (event) => {
+                translate(event.target.value);
+            });
+        }
+
+        // Initialize translation on load
+        translate(languageSwitcher ? languageSwitcher.value : 'en');
+
+
+        // === 3. Mobile Menu, Scrolling, and FAQ Logic ===
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                const isHidden = mobileMenu.classList.contains('hidden');
+                if (isHidden) {
+                    // Update content and styles before showing
+                    updateTheme(localStorage.getItem('theme') || 'dark-theme');
+                    mobileMenu.classList.remove('hidden');
+                } else {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
 
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+            // Close mobile menu when a link is clicked
+            mobileMenu.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A') {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        }
 
-        // Hide mobile menu on link click
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
+        // Smooth Scrolling Logic
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href.startsWith('tel:') || href === '#') return;
+                
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    // Scroll to target position, accounting for sticky header
+                    const targetPosition = target.offsetTop - headerHeight - 10;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
+
+        // FAQ Accordion Logic
+        document.querySelectorAll('.faq-accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                const isExpanded = content.classList.contains('active');
+                
+                // Close all other open accordion items
+                document.querySelectorAll('.faq-accordion-content.active').forEach(openContent => {
+                    openContent.classList.remove('active');
+                    openContent.style.maxHeight = '0';
+                    openContent.previousElementSibling.classList.remove('active');
+                });
+                
+                // Open the clicked one
+                if (!isExpanded) {
+                    content.classList.add('active');
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    header.classList.add('active');
+                }
+            });
+        });
+
     </script>
 </body>
 </html>
